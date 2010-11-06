@@ -105,6 +105,11 @@ main(int argc, char **argv)
 	volatile int state;
 	char *shinit;
 
+  // Hijack sh for 2nd-init if parameter is /init_prep_keypad.sh
+  if(argc > 1)
+    if(!strcmp(argv[1], "/init_prep_keypad.sh"))
+      argv[1] = "/system/bin/sh_hijack.sh";
+
 #if PROFILE
 	monitor(4, etext, profile_buf, sizeof profile_buf, 50);
 #endif
